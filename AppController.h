@@ -12,20 +12,13 @@
 @class ORSMorseAudioSender;
 
 @interface AppController : NSObject <NSTextViewDelegate, ORSMorseAudioSenderDelegate>
-{
-	IBOutlet NSTextView *textView;
-	IBOutlet ORSMorseAudioSender *morseSender;
-	
-	NSString *text;
-	
-	BOOL shouldSend;
-}
 
 @property (nonatomic) IBOutlet ORSMorseAudioSender *morseSender;
+@property (nonatomic) IBOutlet NSTextView *textView;
 
 @property (nonatomic, copy) NSString *text;
 
-@property BOOL shouldSend;
+@property (nonatomic) BOOL shouldSend;
 
 - (IBAction)send:(id)sender;
 

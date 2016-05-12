@@ -19,17 +19,6 @@ typedef NS_ENUM(NSUInteger, ORSMorseElement)
 };
 
 @interface ORSMorseAudioSender : NSObject <NSSoundDelegate>
-{
-	BOOL playing;
-	NSNumber *speedInWPM;
-	NSNumber *pitchInHz;
-	BOOL usesFarnsworth;
-	NSNumber *dahToDitRatio;
-	
-	id <ORSMorseAudioSenderDelegate> __unsafe_unretained delegate;
-@private
-	NSMutableArray *charactersToPlay;
-}
 
 @property (getter = isPlaying) BOOL playing;
 @property (nonatomic, copy) NSNumber *speedInWPM;

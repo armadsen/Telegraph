@@ -22,7 +22,7 @@
 
 - (IBAction)send:(id)sender 
 {
-	[morseSender playMorseForString:textView.string];
+	[morseSender playMorseForString:self.textView.string];
 }
 
 - (void)removeCharacterFromBeginningOfTextField:(NSString *)charString;
@@ -69,19 +69,13 @@
 #pragma mark -
 #pragma mark Accessor Methods
 
--(BOOL) shouldSend;
+@synthesize shouldSend = _shouldSend;
+- (void)setShouldSend:(BOOL)shouldSend
 {
-	return shouldSend;
-}
-
--(void) setShouldSend: (BOOL) flag;
-{
-	BOOL startSending=NO;
-	if ((flag != shouldSend) && flag == YES) startSending = YES;
-	
-	shouldSend = flag;
-	
-	if (startSending) [self sendNextCharacter];
+	if (shouldSend != _shouldSend) {
+		_shouldSend = shouldSend;
+		if (_shouldSend) [self sendNextCharacter];
+	}
 }
 
 @end
