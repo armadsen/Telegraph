@@ -13,16 +13,18 @@
 
 @interface AppController : NSObject <NSTextViewDelegate, ORSMorseAudioSenderDelegate>
 
+- (IBAction)send:(id)sender;
+
+- (void)removeCharacterFromBeginningOfTextField:(NSString *)charString;
+- (void)sendNextCharacter;
+
+// Properties
+
 @property (nonatomic) IBOutlet ORSMorseAudioSender *morseSender;
 @property (nonatomic) IBOutlet NSTextView *textView;
 
 @property (nonatomic, copy) NSString *text;
 
 @property (nonatomic) BOOL shouldSend;
-
-- (IBAction)send:(id)sender;
-
--(void) removeCharacterFromBeginningOfTextField: (NSString *) charString;
--(void) sendNextCharacter;
 
 @end

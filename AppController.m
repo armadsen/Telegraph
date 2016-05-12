@@ -11,18 +11,16 @@
 
 @implementation AppController
 
-@synthesize morseSender;
-
 @synthesize text;
 
 - (void)awakeFromNib;
 {
-	morseSender.delegate = self;
+	self.morseSender.delegate = self;
 }
 
 - (IBAction)send:(id)sender 
 {
-	[morseSender playMorseForString:self.textView.string];
+	[self.morseSender playMorseForString:self.textView.string];
 }
 
 - (void)removeCharacterFromBeginningOfTextField:(NSString *)charString;
@@ -41,33 +39,30 @@
 	if (!self.shouldSend) return;
 	if (self.text == nil || (self.text).length < 1) return;
 	
-	[morseSender playMorseForString:[self.text substringToIndex:1]];
+	[self.morseSender playMorseForString:[self.text substringToIndex:1]];
 }
 
-#pragma mark -
-#pragma mark NSTextViewDelegateMethods
+#pragma mark - NSTextViewDelegateMethods
 
--(void) textDidChange:(NSNotification *)notification;
+- (void)textDidChange:(NSNotification *)notification;
 {
-	if (morseSender.isPlaying) return;
+	if (self.morseSender.isPlaying) return;
 	
 	[self sendNextCharacter];
 }
 
-#pragma mark -
-#pragma mark ORSMorseAudioSenderDelegate Methods
--(void) morseSender: (ORSMorseAudioSender *) sender didSendCharacter: (NSString *) charString;
+#pragma mark - ORSMorseAudioSenderDelegate Methods
+- (void)morseSender:(ORSMorseAudioSender *)sender didSendCharacter:(NSString *)charString;
 {
-	[self removeCharacterFromBeginningOfTextField: charString];
+	[self removeCharacterFromBeginningOfTextField:charString];
 }
 
--(void) morseSenderDidFinishPlaying: (ORSMorseAudioSender *) sender;
+- (void)morseSenderDidFinishPlaying:(ORSMorseAudioSender *)sender;
 {
 	[self sendNextCharacter];
 }
 
-#pragma mark -
-#pragma mark Accessor Methods
+#pragma mark - Properties
 
 @synthesize shouldSend = _shouldSend;
 - (void)setShouldSend:(BOOL)shouldSend

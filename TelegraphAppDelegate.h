@@ -8,10 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface TelegraphAppDelegate : NSObject <NSApplicationDelegate> {
-    NSWindow *__unsafe_unretained window;
-}
+@interface TelegraphAppDelegate : NSObject <NSApplicationDelegate>
 
-@property (unsafe_unretained) IBOutlet NSWindow *window;
+@property (nonatomic, strong) IBOutlet NSWindow *window;
 
 @end

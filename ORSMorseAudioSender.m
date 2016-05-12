@@ -8,50 +8,25 @@
 
 #import "ORSMorseAudioSender.h"
 
-@interface ORSMorseAudioSender (Private)
-
--(void) playNextCharacter;
--(NSSound *) soundForCharacter: (char) character;
--(NSSound *) soundForMorseElement: (NSNumber *) morseElement;
--(NSArray *) elementsForCharacter: (char) character;
--(NSData *) audioToneDataWithDuration: (NSUInteger) milliseconds;
--(NSData *) audioSilenceDataWithDuration: (NSUInteger) milliseconds;
--(NSData *) aiffHeaderForDuration: (NSUInteger) milliseconds;
-
--(void) informDelegateThatCharacterWasSent: (NSString *) string;
--(void) informDelegateThatSendingFinished;
-
-@end
-
 @implementation ORSMorseAudioSender
-
-@synthesize playing;
-@synthesize speedInWPM;
-@synthesize pitchInHz;
-@synthesize usesFarnsworth;
-@synthesize dahToDitRatio;
-
-@synthesize delegate;
-
-@synthesize charactersToPlay;
 
 - (instancetype)init 
 {
     if ((self = [super init])) 
 	 {
         // Initialization code here.
-		charactersToPlay = [NSMutableArray array];
-		speedInWPM = @13;
-		pitchInHz = @800;
-		usesFarnsworth = NO;
-		dahToDitRatio = @3;
+		_charactersToPlay = [NSMutableArray array];
+		_speedInWPM = @13;
+		_pitchInHz = @800;
+		_usesFarnsworth = NO;
+		_dahToDitRatio = @3;
 	 }
     
     return self;
 }
 
 
--(void) playMorseForString: (NSString *) string;
+- (void)playMorseForString:(NSString *)string;
 {
 	if (string == nil || string.length < 1) return;
 	
@@ -68,16 +43,15 @@
 #pragma mark -
 #pragma NSSoundDelegate Methods
 
--(void)sound:(NSSound *)sound didFinishPlaying:(BOOL)aBool;
+- (void)sound:(NSSound *)sound didFinishPlaying:(BOOL)aBool;
 {
 	[self playNextCharacter];
 }
 
 
-#pragma mark -
-#pragma mark Private Methods
+#pragma mark - Private Methods
 
--(void) playNextCharacter;
+- (void)playNextCharacter;
 {
 	if (self.charactersToPlay.count < 1)
 	 {
@@ -103,7 +77,7 @@
 	[sound play];
 }
 
--(NSSound *) soundForCharacter: (char) character;
+- (NSSound *)soundForCharacter:(char)character;
 {	
 	NSArray *elements = [self elementsForCharacter: character];
 	if (elements == nil) return nil;
@@ -157,7 +131,7 @@
 	return result;
 }
 
--(NSSound *) soundForMorseElement: (NSNumber *) morseElement;
+- (NSSound *)soundForMorseElement:(NSNumber *)morseElement;
 {
 	if (morseElement == nil) return nil;
 	
@@ -201,7 +175,7 @@
 	return result;
 }
 
--(NSArray *) elementsForCharacter: (char) character;
+- (NSArray *)elementsForCharacter:(char)character;
 {
 	NSNumber *dit = @(ORSDit);
 	NSNumber *dah = @(ORSDah);
@@ -353,7 +327,7 @@
 	return [scratch copy];
 }
 
--(NSData *) audioToneDataWithDuration: (NSUInteger) milliseconds;
+- (NSData *)audioToneDataWithDuration:(NSUInteger)milliseconds;
 {
 	double frequency = self.pitchInHz.doubleValue;
 	
@@ -393,7 +367,7 @@
 	return data;
 }
 
--(NSData *) audioSilenceDataWithDuration: (NSUInteger) milliseconds;
+- (NSData *)audioSilenceDataWithDuration:(NSUInteger)milliseconds;
 {       
     const unsigned int sampleRate = 48000;
     const unsigned int channels = 1;
@@ -416,7 +390,7 @@
 	return data;
 }
 
--(NSData *) aiffHeaderForDuration: (NSUInteger) milliseconds;
+- (NSData *)aiffHeaderForDuration:(NSUInteger)milliseconds;
 {
     struct Simple_AIFF_File {
         /* FORM chunk */
@@ -452,7 +426,7 @@
     unsigned int i;
     
     struct Simple_AIFF_File* aiff = malloc(totalSize);
-    if (! aiff) {
+    if (!aiff) {
         printf("Out of memory allocating %u bytes!\n", totalSize);
         return nil;
     }
@@ -494,7 +468,7 @@
 	return data;
 }
 
--(void) informDelegateThatCharacterWasSent: (NSString *) string;
+- (void)informDelegateThatCharacterWasSent:(NSString *)string;
 {
 	if (self.delegate == nil) return;
 	if (![self.delegate respondsToSelector: @selector(morseSender:didSendCharacter:)]) return;
@@ -503,7 +477,7 @@
 	
 }
 
--(void) informDelegateThatSendingFinished;
+- (void)informDelegateThatSendingFinished;
 {
 	if (self.delegate == nil) return;
 	if (![self.delegate respondsToSelector: @selector(morseSenderDidFinishPlaying:)]) return;
