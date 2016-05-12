@@ -474,7 +474,7 @@
 	if (![self.delegate respondsToSelector: @selector(morseSender:didSendCharacter:)]) return;
 	
 	[self.delegate morseSender: self didSendCharacter: string];
-	
+
 }
 
 - (void)informDelegateThatSendingFinished;

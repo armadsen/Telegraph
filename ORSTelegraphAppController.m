@@ -6,10 +6,10 @@
 //  Copyright 2011 Open Reel Software. All rights reserved.
 //
 
-#import "AppController.h"
+#import "ORSTelegraphAppController.h"
 #import "ORSMorseAudioSender.h"
 
-@implementation AppController
+@implementation ORSTelegraphAppController
 
 @synthesize text;
 

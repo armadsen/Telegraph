@@ -11,7 +11,7 @@
 
 @class ORSMorseAudioSender;
 
-@interface AppController : NSObject <NSTextViewDelegate, ORSMorseAudioSenderDelegate>
+@interface ORSTelegraphAppController : NSObject <NSTextViewDelegate, ORSMorseAudioSenderDelegate>
 
 - (IBAction)send:(id)sender;
 
@@ -20,8 +20,9 @@
 
 // Properties
 
-@property (nonatomic) IBOutlet ORSMorseAudioSender *morseSender;
+@property (nonatomic, strong) IBOutlet NSWindow *window;
 @property (nonatomic) IBOutlet NSTextView *textView;
+@property (nonatomic) IBOutlet ORSMorseAudioSender *morseSender;
 
 @property (nonatomic, copy) NSString *text;
 
