@@ -36,7 +36,7 @@
 	self.morseSender.delegate = self;
 }
 
-- (IBAction)send:(id)sender 
+- (IBAction)send:(id)sender
 {
 	[self.morseSender playMorseForString:self.textView.string];
 }
@@ -45,11 +45,11 @@
 {
 	if (charString == nil || charString.length < 1) return;
 	
-	if (charString.length > 1) charString = [charString substringToIndex: 1];
+	if (charString.length > 1) charString = [charString substringToIndex:1];
 	
-	if ([[self.text substringToIndex: 1] caseInsensitiveCompare: charString] != NSOrderedSame) return;
+	if ([[self.text substringToIndex:1] caseInsensitiveCompare:charString] != NSOrderedSame) return;
 	
-	self.text = [self.text substringFromIndex: 1];
+	self.text = [self.text substringFromIndex:1];
 }
 
 - (void)sendNextCharacter;

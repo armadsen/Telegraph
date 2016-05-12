@@ -103,14 +103,22 @@
 		9D3965D71CE4EF180032AA23 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				9D3965D81CE4EF180032AA23 /* main.m */,
-				9D3965D91CE4EF180032AA23 /* ORSMorseAudioSender.h */,
-				9D3965DA1CE4EF180032AA23 /* ORSMorseAudioSender.m */,
 				9D3965DB1CE4EF180032AA23 /* ORSTelegraphAppController.h */,
 				9D3965DC1CE4EF180032AA23 /* ORSTelegraphAppController.m */,
-				9D3965DD1CE4EF180032AA23 /* Telegraph_Prefix.pch */,
+				9D3965D91CE4EF180032AA23 /* ORSMorseAudioSender.h */,
+				9D3965DA1CE4EF180032AA23 /* ORSMorseAudioSender.m */,
+				9D3965E41CE4EF890032AA23 /* Other Sources */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		9D3965E41CE4EF890032AA23 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9D3965D81CE4EF180032AA23 /* main.m */,
+				9D3965DD1CE4EF180032AA23 /* Telegraph_Prefix.pch */,
+			);
+			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

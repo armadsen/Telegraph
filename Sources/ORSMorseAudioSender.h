@@ -27,7 +27,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol ORSMorseAudioSenderDelegate;
-typedef NS_ENUM(NSUInteger, ORSMorseElement) 
+typedef NS_ENUM(NSUInteger, ORSMorseElement)
 {
 	ORSDit,
 	ORSDah,
