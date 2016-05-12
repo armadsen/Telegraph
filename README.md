@@ -4,4 +4,4 @@ Telegraph is a simple Mac application that generates Morse code from text. I wro
 
 I'm releasing this in case anyone else finds it interesting.
 
-Disclaimer: This was a fun side project that I wrote 5 years ago. It shouldn't be taken as an example of my best code.
+Disclaimer: This was just a fun project that I wrote quickly 5 years ago. It shouldn't be taken as an example of my best code.
